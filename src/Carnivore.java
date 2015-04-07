@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Vector;
 
 /**
  * Created by porrith on 4/7/15.
@@ -8,6 +9,7 @@ public class Carnivore extends Animal {
     private char symbol = '!';
     private int energy;
     private int age;
+    private static Vector<Carnivore> clist = new Vector<Carnivore>();
 
     public Carnivore()
     {
@@ -27,5 +29,10 @@ public class Carnivore extends Animal {
         setCoord(this.x, this.y);
         setAge(age);
         setEnergy(energy);
+    }
+
+    public void addCarn (Carnivore c)
+    {
+        clist.add(c);
     }
 }

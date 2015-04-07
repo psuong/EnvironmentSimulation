@@ -1,13 +1,17 @@
 import java.io.*;
-import java.nio.file.Files;
 import java.util.Random;
+import java.util.Vector;
 
 /**
  * Created by porrith on 4/6/15.
  */
 public class Ecosystem {
-    final private int dimension = 10;
+    final private int dimension = 32;
     protected Cell field[][] = new Cell[dimension][dimension];
+    public static Vector<Herbivore> hlist = new Vector<Herbivore>();
+    public static Vector<Carnivore> clist = new Vector<Carnivore>();
+    public static Vector<Plant> plist = new Vector<Plant>();
+    Container holdPos = new Container();
 
     public Ecosystem()
     {
@@ -26,7 +30,7 @@ public class Ecosystem {
             }
             System.out.println("\n");
         }
-        System.out.println("\n");
+        System.out.println("-------------------------------------------------------------------------------------------");
     }
 
     public void writeFile() throws IOException{
@@ -56,7 +60,7 @@ public class Ecosystem {
 
     public void initSpawn()
     {
-        int amount = new Random().nextInt(50);
+        int amount = new Random().nextInt(1024);
         for (int i = 0; i < amount; i++) {
             int random = new Random().nextInt(5);
             int x = new Random().nextInt(dimension);
@@ -65,15 +69,21 @@ public class Ecosystem {
                 field[x][y].objects = new Obstacle(x, y);
             }
             else if ((random == 1) && (isAvail(x, y, '*'))) {
-                field[x][y].objects = new Plant(x, y);
+                Plant plant = new Plant(x,y);
+                field[x][y].objects = plant;
+                holdPos.addPlant(plant);
             }
             else if ((random == 3) && ((isAvail(x, y, '!'))))
             {
-                field[x][y].animals = new Carnivore(x, y);
+                Carnivore bear = new Carnivore(x, y);
+                field[x][y].animals = bear;
+                holdPos.addCarn(bear);
             }
             else if (isAvail(x, y, '@'))
             {
-                field[x][y].animals = new Herbivore(x, y);
+                Herbivore rabbit = new Herbivore(x, y);
+                field[x][y].animals = rabbit;
+                holdPos.addHerb(rabbit);
             }
         }
     }
@@ -82,8 +92,9 @@ public class Ecosystem {
     {
         if (isAvail(x, y, '*'))
         {
-            System.out.println(true);
-            field[x][y].objects = new Plant(x, y);
+            Plant plant = new Plant(x, y);
+            field[x][y].objects = plant;
+            holdPos.addPlant(plant);
         }
     }
 
@@ -91,13 +102,13 @@ public class Ecosystem {
         Ecosystem environ = new Ecosystem();
         environ.initSpawn();
         environ.printEco();
-        for (int i = 0; i < 10; i++) {
-            int x = new Random().nextInt(10);
-            int y = new Random().nextInt(10);
+        /*for (int i = 0; i < 10; i++) {
+            int x = new Random().nextInt(32);
+            int y = new Random().nextInt(32);
             environ.plantGen(x, y);
             environ.printEco();
-            environ.writeFile();
-        }
-
+            //    environ.writeFile();
+        }*/
+        System.out.println(environ.holdPos.getSize());
     }
 }

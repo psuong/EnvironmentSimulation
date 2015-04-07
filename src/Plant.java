@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Vector;
 
 /**
  * Created by porrith on 4/6/15.
@@ -7,6 +8,7 @@ public class Plant extends Actor {
     private int x,y;
     private char symbol = '*';
     private int age;
+    private Vector<Plant> plist = new Vector<Plant>();
 
     Plant()
     {
@@ -23,5 +25,15 @@ public class Plant extends Actor {
         setSymbol(symbol);
         setCoord(this.x, this.y);
         setAge(age);
+    }
+
+    public void addPlant(Plant p)
+    {
+        plist.add(p);
+    }
+
+    public int getSize()
+    {
+        return plist.size();
     }
 }

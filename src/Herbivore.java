@@ -28,4 +28,9 @@ public class Herbivore extends Animal {
         setAge(age);
         setEnergy(energy);
     }
+
+    public void scanList()
+    {
+
+    }
 }
