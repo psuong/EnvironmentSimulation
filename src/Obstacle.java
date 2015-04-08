@@ -17,8 +17,6 @@ public class Obstacle extends Actor {
 
     public Obstacle(int x, int y)
     {
-        this.x = x;
-        this.y = y;
         age = new Random().nextInt(50);
         setSymbol(symbol);
         setCoord(this.x, this.y);

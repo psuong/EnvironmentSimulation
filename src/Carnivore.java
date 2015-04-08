@@ -7,32 +7,43 @@ import java.util.Vector;
 public class Carnivore extends Animal {
     private int x, y;
     private char symbol = '!';
-    private int energy;
+    private int energy = 10;
     private int age;
-    private static Vector<Carnivore> clist = new Vector<Carnivore>();
 
     public Carnivore()
     {
         x = 0;
         y = 0;
-        energy = new Random().nextInt(50);
-        age = new Random().nextInt(10);
+        age = RNG.nextInt(10);
     }
 
     public Carnivore(int x, int y)
     {
         this.x = x;
         this.y = y;
-        energy = new Random().nextInt(50);
-        age = new Random().nextInt(50);
-        setSymbol(symbol);
-        setCoord(this.x, this.y);
-        setAge(age);
-        setEnergy(energy);
+        age = RNG.nextInt(10);
     }
 
-    public void addCarn (Carnivore c)
+    public void Carnivore(int x, int y, Ecosystem passField)
     {
-        clist.add(c);
+        this.x = x;
+        this.y = y;
+        age = RNG.nextInt(10);
     }
+
+    public int getEnergy()
+    {
+        return energy;
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
 }

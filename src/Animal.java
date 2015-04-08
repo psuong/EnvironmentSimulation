@@ -3,18 +3,16 @@ import java.util.Random;
 /**
  * Created by porrith on 4/6/15.
  */
-public class Animal {
+public class Animal extends Actor{
     protected int x, y;
-    protected char symbol;
+    protected char symbol = 'X';
     protected int age;
-    protected int energy;
+    protected int energy = 10;
 
     public Animal() {
         x = 0;
         y = 0;
-        symbol = 'X';
-        age = new Random().nextInt(10);
-        energy = new Random().nextInt(10);
+        age = RNG.nextInt(10);
     }
 
     public char getSymbol()
@@ -22,24 +20,31 @@ public class Animal {
         return symbol;
     }
 
-    public void setSymbol(char c)
+    public void eat()
     {
-        symbol = c;
+
     }
 
-    public void setCoord(int x, int y)
+    public void die()
     {
-        this.x = x;
-        this.y= y;
+
     }
 
-    public void setAge(int age)
+    public void giveBirth()
     {
-        this.age = age;
+
     }
 
-    public void setEnergy(int energy)
+    public void move()
     {
-        this.energy = energy;
+
+    }
+
+    @Override
+    public void act() {
+        die();
+        eat();
+        giveBirth();
+        move();
     }
 }

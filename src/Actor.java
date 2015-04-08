@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.Vector;
 
 /**
  * Created by porrith on 4/6/15.
@@ -8,14 +7,14 @@ public class Actor {
     protected char symbol = 'X';
     protected int age;
     protected int x, y;
-    protected Vector<Plant> plist;
+    protected int energy = 10;
+    protected Random RNG = new Random();
 
     Actor()
     {
         x = 0;
         y = 0;
-        age = new Random().nextInt(20);
-        //symbol = 'X';
+        age = RNG.nextInt(10);
     }
 
     public char getSymbol()
@@ -39,8 +38,12 @@ public class Actor {
         this.age = age;
     }
 
-    public void addPlant(Plant p)
+    public void act()
     {
-        plist.add(p);
+
+    }
+    public void die()
+    {
+
     }
 }
