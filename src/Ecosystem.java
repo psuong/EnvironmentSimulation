@@ -6,11 +6,8 @@ import java.util.Vector;
  * Created by porrith on 4/6/15.
  */
 public class Ecosystem {
-    final private int dimension = 32;
+    final private int dimension = 5;
     protected Cell field[][] = new Cell[dimension][dimension];
-    public static Vector<Herbivore> hlist = new Vector<Herbivore>();
-    public static Vector<Carnivore> clist = new Vector<Carnivore>();
-    public static Vector<Plant> plist = new Vector<Plant>();
     Container holdPos = new Container();
 
     public Ecosystem()
@@ -53,14 +50,14 @@ public class Ecosystem {
             return true;
         else if ((c == '*') && (objectChar == 'X'))
             return true;
-        else if ((c == '@' || c == '!') && (objectChar == 'X'))
+        else if (((c == '!') || (c == '@')) && ((objectChar != '#')) && (animalChar == 'X'))
             return true;
         return false;
     }
 
     public void initSpawn()
     {
-        int amount = new Random().nextInt(1024);
+        int amount = new Random().nextInt(50);
         for (int i = 0; i < amount; i++) {
             int random = new Random().nextInt(5);
             int x = new Random().nextInt(dimension);
