@@ -6,13 +6,16 @@ import java.util.Random;
 public class Animal extends Actor{
     protected int x, y;
     protected char symbol = 'X';
-    protected int age;
-    protected int energy = 10;
+    protected int age = 0;
+    protected int energy = 0;
 
     public Animal() {
         x = 0;
         y = 0;
-        age = RNG.nextInt(10);
+        setCoord(0, 0);
+        setSymbol(symbol);
+        setEnergy(0);
+        setAge(age);
     }
 
     public char getSymbol()
@@ -20,31 +23,34 @@ public class Animal extends Actor{
         return symbol;
     }
 
-    public void eat()
+    public void setSymbol(char c)
     {
-
+        symbol = c;
     }
 
-    public void die()
+    public void setCoord(int x, int y)
     {
-
+        this.x = x;
+        this.y= y;
     }
 
-    public void giveBirth()
+    public int getAge()
     {
-
+        return age;
     }
 
-    public void move()
+    public void setAge(int age)
     {
-
+        this.age = age;
     }
 
-    @Override
-    public void act() {
-        die();
-        eat();
-        giveBirth();
-        move();
+    public void setEnergy(int energy)
+    {
+        this.energy = energy;
+    }
+
+    public void spawnBaby(Ecosystem ecosystem)
+    {
+        ecosystem.spawnBaby();
     }
 }

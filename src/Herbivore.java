@@ -1,12 +1,10 @@
-import java.util.Random;
-
 /**
  * Created by porrith on 4/7/15.
  */
 public class Herbivore extends Animal {
     private int x, y;
     private char symbol = '@';
-    private int energy = 10;
+    private int energy = 20;
     private int age;
 
     public Herbivore()
@@ -20,7 +18,20 @@ public class Herbivore extends Animal {
     {
         this.x = x;
         this.y = y;
-        age = RNG.nextInt(10);
+        //age = RNG.nextInt(10);
+        age = 20;
+        setCoord(this.x, this.y);
+        setAge(age);
+        setEnergy(energy);
+        setSymbol(symbol);
+    }
+
+    public Herbivore(int x, int y, int age)
+    {
+        this.x = x;
+        this.y = y;
+        this.age = age;
+        energy = 3;
     }
 
     public int getX()
@@ -28,5 +39,13 @@ public class Herbivore extends Animal {
         return x;
     }
 
-    public
+    public int getY()
+    {
+        return y;
+    }
+
+    public int getEnergy()
+    {
+        return energy;
+    }
 }

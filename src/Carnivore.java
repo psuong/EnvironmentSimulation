@@ -1,6 +1,3 @@
-import java.util.Random;
-import java.util.Vector;
-
 /**
  * Created by porrith on 4/7/15.
  */
@@ -22,13 +19,22 @@ public class Carnivore extends Animal {
         this.x = x;
         this.y = y;
         age = RNG.nextInt(10);
+        setCoord(this.x, this.y);
+        setEnergy(energy);
+        setAge(age);
+        setSymbol(symbol);
     }
 
-    public void Carnivore(int x, int y, Ecosystem passField)
+    public Carnivore(int x, int y, int age)
     {
         this.x = x;
         this.y = y;
-        age = RNG.nextInt(10);
+        this.age = age;
+        energy = 3;
+        setCoord(this.x, this.y);
+        setEnergy(energy);
+        setAge(age);
+        setSymbol(symbol);
     }
 
     public int getEnergy()

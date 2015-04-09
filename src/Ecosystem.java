@@ -6,8 +6,8 @@ import java.util.Vector;
  * Created by porrith on 4/6/15.
  */
 public class Ecosystem {
-    final private int dimension = 5;
-    protected Cell field[][] = new Cell[dimension][dimension];
+    final private int dimension = 7;
+    private Cell field[][] = new Cell[dimension][dimension];
 
     private Vector<Carnivore> clist;
     private Vector<Herbivore> hlist;
@@ -22,7 +22,6 @@ public class Ecosystem {
         hlist = new Vector<Herbivore>();
         plist = new Vector<Plant>();
         olist = new Vector<Obstacle>();
-
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
                 field[i][j] = new Cell();
@@ -38,7 +37,12 @@ public class Ecosystem {
             }
             System.out.println("\n");
         }
-        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------------");
+    }
+
+    public void printList()
+    {
+        System.out.println("Carnivore: " + clist.size() + " Herbivore: " + hlist.size() + " Plant: " + plist.size());
     }
 
     public void writeFile() throws IOException{
@@ -68,7 +72,7 @@ public class Ecosystem {
 
     public void initSpawn()
     {
-        int amount = RNG.nextInt(50);
+        int amount = RNG.nextInt(20);
         for (int i = 0; i < amount; i++) {
             int random = RNG.nextInt(5);
             int x = RNG.nextInt(dimension);
@@ -89,7 +93,7 @@ public class Ecosystem {
                 field[x][y].animals = bear;
                 clist.add(bear);
             }
-            else if (isAvail(x, y, '@'))
+            else if ((random == 4) && (isAvail(x, y, '@')))
             {
                 Herbivore rabbit = new Herbivore(x, y);
                 field[x][y].animals = rabbit;
@@ -110,17 +114,66 @@ public class Ecosystem {
 
     public void killObject()
     {
-        for (int i = 0; i < clist.size(); i++) {
+        for (int i = clist.size() - 1; i >= 0; i--) {
             if (clist.elementAt(i).getEnergy() <= 0)
             {
+                System.out.println(true + " carnivore");
                 int x = clist.elementAt(i).getX();
                 int y = clist.elementAt(i).getY();
-                field[x][y].animals = null;
+                field[x][y].animals = new Animal();
                 clist.remove(i);
             }
         }
-        for (int i = 0; i < hlist.size(); i++) {
-            if (hlist.elementAt(i).)
+        for (int i = hlist.size() - 1; i >= 0; i--) {
+            if (hlist.elementAt(i).getEnergy() <= 0)
+            {
+                System.out.println(true + " herbivore");
+                int x = hlist.elementAt(i).getX();
+                int y = hlist.elementAt(i).getY();
+                field[x][y].animals = new Animal();
+                hlist.remove(i);
+            }
+        }
+    }
+
+    public void spawnBaby()
+    {
+        int energy;
+        int age;
+        int x;
+        int y;
+        for (int i = 0; i < clist.size(); i++) {
+            energy = clist.elementAt(i).getEnergy();
+            age = clist.elementAt(i).getAge();
+            if ((age > 15) && (energy > 10))
+            {
+                x = RNG.nextInt(dimension);
+                y = RNG.nextInt(dimension);
+                if (isAvail(x, y, '!'))
+                {
+                    Carnivore cub = new Carnivore(x, y, 1);
+                    field[x][y].animals = cub;
+                    clist.add(cub);
+                    clist.elementAt(i).setEnergy(5);
+                }
+            }
+        }
+        for (int i = 0; i < hlist.size(); i++)
+        {
+            energy = hlist.elementAt(i).getEnergy();
+            age = hlist.elementAt(i).getAge();
+            if ((age > 15) && (energy > 10))
+            {
+                x = RNG.nextInt(dimension);
+                y = RNG.nextInt(dimension);
+                if (isAvail(x, y, '@'))
+                {
+                    Herbivore kit = new Herbivore(x, y, 1);
+                    field[x][y].animals = kit;
+                    hlist.add(kit);
+                    clist.elementAt(i).setEnergy(5);
+                }
+            }
         }
     }
 }

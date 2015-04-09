@@ -33,17 +33,33 @@ public class Actor {
         this.y= y;
     }
 
+    public int getAge()
+    {
+        return age;
+    }
+
     public void setAge(int age)
     {
         this.age = age;
+    }
+
+    public void setEnergy(int energy)
+    {
+        this.energy = energy;
     }
 
     public void act()
     {
 
     }
-    public void die()
+
+    public void spawnBaby()
     {
 
+    }
+
+    public void die(Ecosystem passField)
+    {
+        passField.killObject();
     }
 }
