@@ -49,8 +49,35 @@ public class Animal extends Actor{
         this.energy = energy;
     }
 
-    public void spawnBaby(Ecosystem ecosystem)
+    @Override
+    public void act(Ecosystem passField) {
+        loseEnergy(passField);
+        spawnBaby(passField);
+        die(passField);
+    }
+
+    public void spawnBaby(Ecosystem passField)
     {
-        ecosystem.spawnBaby();
+        passField.spawnBaby();
+    }
+
+    public void die(Ecosystem passField)
+    {
+        passField.killObject();
+    }
+
+    public void loseEnergy (Ecosystem passField)
+    {
+        passField.loseEnergy();
+    }
+
+    public void eat()
+    {
+
+    }
+
+    public void move(Ecosystem passField)
+    {
+        int movement = RNG.nextInt(8);
     }
 }

@@ -48,18 +48,23 @@ public class Actor {
         this.energy = energy;
     }
 
-    public void act()
+    public void act(Ecosystem passField)
     {
 
     }
 
-    public void spawnBaby()
+    /*public void spawnBaby(Ecosystem passField)
     {
-
+        passField.spawnBaby();
     }
 
     public void die(Ecosystem passField)
     {
         passField.killObject();
     }
+
+    public void loseEnergy (Ecosystem passField)
+    {
+        passField.loseEnergy();
+    }*/
 }

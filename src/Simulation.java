@@ -6,14 +6,16 @@ import java.util.Vector;
 public class Simulation {
     public static void main(String[] args) {
         Ecosystem forest = new Ecosystem();
-        Actor dummy = new Actor();
+        Animal dummy = new Animal();
         forest.initSpawn();
         forest.printEco();
         forest.printList();
-        dummy.die(forest);
-        forest.printEco();
-        forest.printList();
-        dummy.spawnBaby();
+        for (int i = 0; i < 5; i++) {
+            dummy.act(forest);
+            forest.printEco();
+            forest.printList();
+        }
+        dummy.act(forest);
         forest.printEco();
         forest.printList();
     }

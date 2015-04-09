@@ -14,6 +14,10 @@ public class Ecosystem {
     private Vector<Plant> plist;
     private Vector<Obstacle>olist;
 
+    private int csize;
+    private int hsize;
+    private int psize;
+
     private Random RNG = new Random();
 
     public Ecosystem()
@@ -114,7 +118,9 @@ public class Ecosystem {
 
     public void killObject()
     {
-        for (int i = clist.size() - 1; i >= 0; i--) {
+        csize = clist.size();
+        hsize = hlist.size();
+        for (int i = csize - 1; i >= 0; i--) {
             if (clist.elementAt(i).getEnergy() <= 0)
             {
                 System.out.println(true + " carnivore");
@@ -124,7 +130,7 @@ public class Ecosystem {
                 clist.remove(i);
             }
         }
-        for (int i = hlist.size() - 1; i >= 0; i--) {
+        for (int i = hsize - 1; i >= 0; i--) {
             if (hlist.elementAt(i).getEnergy() <= 0)
             {
                 System.out.println(true + " herbivore");
@@ -142,7 +148,9 @@ public class Ecosystem {
         int age;
         int x;
         int y;
-        for (int i = 0; i < clist.size(); i++) {
+        csize = clist.size();
+        hsize = hlist.size();
+        for (int i = csize - 1; i >= 0; i--) {
             energy = clist.elementAt(i).getEnergy();
             age = clist.elementAt(i).getAge();
             if ((age > 15) && (energy > 10))
@@ -158,7 +166,7 @@ public class Ecosystem {
                 }
             }
         }
-        for (int i = 0; i < hlist.size(); i++)
+        for (int i = hsize - 1; i >= 0; i--)
         {
             energy = hlist.elementAt(i).getEnergy();
             age = hlist.elementAt(i).getAge();
@@ -171,9 +179,27 @@ public class Ecosystem {
                     Herbivore kit = new Herbivore(x, y, 1);
                     field[x][y].animals = kit;
                     hlist.add(kit);
-                    clist.elementAt(i).setEnergy(5);
+                    hlist.elementAt(i).setEnergy(5);
                 }
             }
+        }
+    }
+
+    public void loseEnergy()
+    {
+        csize = clist.size();
+        hsize = hlist.size();
+        int energy;
+        for (int i = csize - 1; i >= 0; i--) {
+            energy = clist.elementAt(i).getEnergy();
+            clist.elementAt(i).setEnergy(energy - 1);
+            //System.out.println(energy);
+        }
+        for (int i = hsize - 1; i >= 0; i--)
+        {
+            energy = hlist.elementAt(i).getEnergy();
+            hlist.elementAt(i).setEnergy(energy - 1);
+            //System.out.println(energy);
         }
     }
 }

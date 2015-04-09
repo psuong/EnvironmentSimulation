@@ -4,7 +4,7 @@
 public class Herbivore extends Animal {
     private int x, y;
     private char symbol = '@';
-    private int energy = 20;
+    private int energy = 5;
     private int age;
 
     public Herbivore()
@@ -47,5 +47,10 @@ public class Herbivore extends Animal {
     public int getEnergy()
     {
         return energy;
+    }
+
+    public void setEnergy(int energy)
+    {
+        this.energy = energy;
     }
 }

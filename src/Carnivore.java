@@ -52,4 +52,9 @@ public class Carnivore extends Animal {
         return y;
     }
 
+    /*public void setEnergy(int energy)
+    {
+        this.energy = energy;
+    }*/
+
 }
