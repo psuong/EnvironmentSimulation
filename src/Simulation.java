@@ -7,16 +7,11 @@ public class Simulation {
     public static void main(String[] args) {
         Ecosystem forest = new Ecosystem();
         Animal dummy = new Animal();
-        forest.initSpawn();
+        forest.setCoordinates(0, 6);
         forest.printEco();
-        forest.printList();
-        for (int i = 0; i < 5; i++) {
-            dummy.act(forest);
+        for (int i = 0; i < 6; i++) {
+            dummy.move(forest);
             forest.printEco();
-            forest.printList();
         }
-        dummy.act(forest);
-        forest.printEco();
-        forest.printList();
     }
 }

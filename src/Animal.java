@@ -34,6 +34,11 @@ public class Animal extends Actor{
         this.y= y;
     }
 
+    public void getCoord()
+    {
+        System.out.println(this.x + " " + this. y);
+    }
+
     public int getAge()
     {
         return age;
@@ -52,8 +57,9 @@ public class Animal extends Actor{
     @Override
     public void act(Ecosystem passField) {
         loseEnergy(passField);
-        spawnBaby(passField);
+        //spawnBaby(passField);
         die(passField);
+        move(passField);
     }
 
     public void spawnBaby(Ecosystem passField)
@@ -78,6 +84,6 @@ public class Animal extends Actor{
 
     public void move(Ecosystem passField)
     {
-        int movement = RNG.nextInt(8);
+        passField.movement();
     }
 }

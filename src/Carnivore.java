@@ -4,7 +4,7 @@
 public class Carnivore extends Animal {
     private int x, y;
     private char symbol = '!';
-    private int energy = 10;
+    private int energy = 0;
     private int age;
 
     public Carnivore()
@@ -52,9 +52,11 @@ public class Carnivore extends Animal {
         return y;
     }
 
-    /*public void setEnergy(int energy)
+    public void setLocation(int x, int y)
     {
-        this.energy = energy;
-    }*/
+        this.x = x;
+        this.y = y;
+        setCoord(x, y);
+    }
 
 }

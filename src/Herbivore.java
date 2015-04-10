@@ -4,7 +4,7 @@
 public class Herbivore extends Animal {
     private int x, y;
     private char symbol = '@';
-    private int energy = 5;
+    private int energy = 10;
     private int age;
 
     public Herbivore()
@@ -18,8 +18,7 @@ public class Herbivore extends Animal {
     {
         this.x = x;
         this.y = y;
-        //age = RNG.nextInt(10);
-        age = 20;
+        age = RNG.nextInt(10);
         setCoord(this.x, this.y);
         setAge(age);
         setEnergy(energy);
@@ -52,5 +51,12 @@ public class Herbivore extends Animal {
     public void setEnergy(int energy)
     {
         this.energy = energy;
+    }
+
+    public void setLocation(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+        setCoord(x, y);
     }
 }
